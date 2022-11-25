@@ -175,7 +175,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
+    <Folder Include="Data\Reminders\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\Windows\MemoryRefresher.png" />
