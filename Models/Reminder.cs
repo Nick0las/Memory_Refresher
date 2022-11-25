@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Memory_Refresher.Models
 {
+    [Serializable]
     internal class Reminder
     {
         public int IndexReminder { get; set; } //номер напоминания

@@ -3,6 +3,8 @@ using Memory_Refresher.Models;
 using Memory_Refresher.ViewModels.ViewModel_Base;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Windows.Input;
 
 namespace Memory_Refresher.ViewModels
@@ -31,7 +33,10 @@ namespace Memory_Refresher.ViewModels
         private bool CanSaveRemindersCmdExecute(object p) => true;
         private void OnSaveRemindersCmdExecuted(object p)
         {
-           
+            string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\TextFile.txt");
+
+
+
         }
 
 

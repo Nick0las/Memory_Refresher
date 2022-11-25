@@ -45,7 +45,9 @@
                 <MenuItem Header="Новое напоминание"
                           Style="{StaticResource MenuItemStyle}"/>
                 <MenuItem Header="Сохранить все напоминания"
-                          Style="{StaticResource MenuItemStyle}"/>
+                          Style="{StaticResource MenuItemStyle}"
+                          Command="{Binding SaveRemindersCmd}"/>
+
                 <MenuItem Header="Выход"
                           Style="{StaticResource MenuItemStyle}"/>
             </MenuItem>
@@ -85,7 +87,8 @@
                                 Margin="5"
                                 Height="30" 
                                 HorizontalAlignment="Left"
-                                Style="{StaticResource SaveButtonStyle}">
+                                Style="{StaticResource SaveButtonStyle}"
+                                Command="{Binding SaveRemindersCmd}">
                         </Button>
 
                         <Button Content="Отменить напоминание"
