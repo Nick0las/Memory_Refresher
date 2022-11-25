@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 namespace Memory_Refresher.ViewModels.ViewModel_Base
 {
-    internal abstract class Base_VM
+    internal abstract class Base_VM : INotifyPropertyChanged
     {
         /*реализация интерфейса INotifyPropertyChanged*/
         public event PropertyChangedEventHandler PropertyChanged;
