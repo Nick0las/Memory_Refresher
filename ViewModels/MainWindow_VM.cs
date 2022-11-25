@@ -34,7 +34,12 @@ namespace Memory_Refresher.ViewModels
         private bool CanSaveRemindersCmdExecute(object p) => true;
         private void OnSaveRemindersCmdExecuted(object p)
         {
-            string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\TextFile1.txt");
+            string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\");
+            string [] nameFile = Directory.GetFiles(path);
+            foreach(string paths in nameFile)
+            {
+                Process.Start(paths);
+            }
             
 
 
