@@ -1,6 +1,9 @@
 ﻿using Memory_Refresher.Models;
+using Memory_Refresher.Resources.Iterfaces;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Text.Json;
 
 namespace Memory_Refresher.Services
 {
@@ -11,5 +14,7 @@ namespace Memory_Refresher.Services
 
         // Коллекция для хранения и отображения напоминаний
         public static ObservableCollection<Reminder> Reminders { get; set; } = new ObservableCollection<Reminder>();
+
+        
     }
 }

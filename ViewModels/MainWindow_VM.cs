@@ -1,16 +1,18 @@
 ﻿using Memory_Refresher.Commands;
 using Memory_Refresher.Models;
 using Memory_Refresher.ViewModels.ViewModel_Base;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 using System.Windows.Input;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Memory_Refresher.Services;
+using Memory_Refresher.Resources.Iterfaces;
+using System.Collections.ObjectModel;
 
 namespace Memory_Refresher.ViewModels
 {
-    internal class MainWindow_VM : Base_VM
+    internal class MainWindow_VM : Base_VM, IDownloadReminders
     {
         #region заголовок окна
         private string _Tittle = "Memory Refresher++";
@@ -34,15 +36,7 @@ namespace Memory_Refresher.ViewModels
         private bool CanSaveRemindersCmdExecute(object p) => true;
         private void OnSaveRemindersCmdExecuted(object p)
         {
-            string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\");
-            string [] nameFile = Directory.GetFiles(path);
-            foreach(string paths in nameFile)
-            {
-                Process.Start(paths);
-            }
-            
-
-
+            SaveReminders(Collections.Reminders);
         }
 
 
@@ -51,9 +45,27 @@ namespace Memory_Refresher.ViewModels
         #region Конструктор
         public MainWindow_VM()
         {
+            //TestOpenFile();
             SaveRemindersCmd = new LamdaCommand(OnSaveRemindersCmdExecuted, CanSaveRemindersCmdExecute);
         }
 
         #endregion
+
+        private void TestOpenFile()
+        {
+            string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\");
+            string[] nameFile = Directory.GetFiles(path);
+            foreach (string paths in nameFile)
+            {
+                Process.Start(paths);
+            }
+        }
+
+        public void SaveReminders(ObservableCollection<Reminder> collections)
+        {
+            string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\");
+            string json = JsonSerializer.Serialize(collections);
+            File.WriteAllText(path + @"reminders.json", json);
+        }
     }
 }
