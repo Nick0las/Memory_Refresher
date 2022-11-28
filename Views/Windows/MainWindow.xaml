@@ -135,6 +135,12 @@
                                                 Width="200"
                                                 Binding="{Binding DateTimeReminder, StringFormat={}{0:dd.MM.yyyy}}"/>
                         </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Выполнено"
+                                          Command="{Binding ReminderCompletedCmd}"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
                     </DataGrid>
                 </DockPanel>
             </TabItem>

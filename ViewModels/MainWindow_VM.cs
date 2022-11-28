@@ -30,6 +30,8 @@ namespace Memory_Refresher.ViewModels
         #endregion
 
         #region Команды
+
+        #region Сохранение в файл
         //Команда сохранения в файл
 
         public ICommand SaveRemindersCmd { get; }
@@ -38,15 +40,27 @@ namespace Memory_Refresher.ViewModels
         {
             SaveReminders(Collections.Reminders);
         }
+        #endregion //Сохранение в файл
+
+        #region Команда на статус "Напомнинание выполнено"
+        public ICommand ReminderCompletedCmd { get; }
+        private bool CanReminderCompletedCmdExecute(object p) => true;
+        private void OnReminderCompletedCmdExecuted(object p)
+        {
+            SelectedReminder.statusReminder = true;
+        }
+
+        #endregion //Команда на статус "Напомнинание выполнено"
 
 
-        #endregion
+        #endregion //команды
 
         #region Конструктор
         public MainWindow_VM()
         {
             DownloadReminders(Collections.Reminders);
             SaveRemindersCmd = new LamdaCommand(OnSaveRemindersCmdExecuted, CanSaveRemindersCmdExecute);
+            ReminderCompletedCmd = new LamdaCommand(OnReminderCompletedCmdExecuted, CanReminderCompletedCmdExecute);
         }
 
         #endregion

@@ -1,9 +1,9 @@
 [
   {
     "IndexReminder": 1,
-    "TittleReminder": "1",
-    "MessageReminder": "1",
-    "DateTimeReminder": "2022-11-28T09:12:01.8662226+07:00",
-    "statusReminder": false
+    "TittleReminder": "\u0442\u0435\u0441\u0442 1",
+    "MessageReminder": "\u0442\u0435\u0441\u0442 1",
+    "DateTimeReminder": "2022-11-28T10:17:55.853+07:00",
+    "statusReminder": true
   }
 ]
