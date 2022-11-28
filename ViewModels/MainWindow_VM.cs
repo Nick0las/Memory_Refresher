@@ -11,6 +11,7 @@ using Memory_Refresher.Resources.Iterfaces;
 using System.Collections.ObjectModel;
 using System;
 
+
 namespace Memory_Refresher.ViewModels
 {
     internal class MainWindow_VM : Base_VM, IDownloadReminders
@@ -59,7 +60,7 @@ namespace Memory_Refresher.ViewModels
         #region Конструктор
         public MainWindow_VM()
         {
-            DownloadReminders(Collections.Reminders);
+            DownloadReminders(Collections.Reminders);            
             SaveRemindersCmd = new LamdaCommand(OnSaveRemindersCmdExecuted, CanSaveRemindersCmdExecute);
             ReminderCompletedCmd = new LamdaCommand(OnReminderCompletedCmdExecuted, CanReminderCompletedCmdExecute);
         }
@@ -85,14 +86,26 @@ namespace Memory_Refresher.ViewModels
             string path = Path.Combine(exePath + @"\..\..\Data\Reminders\");
 
             string jsonString = File.ReadAllText(path + @"reminders.json");
-
-            var remiders = JsonSerializer.Deserialize<ObservableCollection<Reminder>>(jsonString);
-
-            foreach(Reminder reminder in remiders)
+            try
             {
-                Reminder rem1 = new Reminder();
-                rem1 = reminder;
-                collection.Add(rem1);
+                var remiders = JsonSerializer.Deserialize<ObservableCollection<Reminder>>(jsonString);
+
+                foreach (Reminder reminder in remiders)
+                {
+                    Reminder rem1 = new Reminder();
+                    if(reminder.statusReminder == false)
+                    {
+                        rem1 = reminder;
+                    }
+                    else { break; }
+                    
+                    collection.Add(rem1);
+                }
+            }
+
+            catch
+            {
+                return;
             }
         }
     }
