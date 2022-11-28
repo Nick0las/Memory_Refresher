@@ -45,27 +45,30 @@ namespace Memory_Refresher.ViewModels
         #region Конструктор
         public MainWindow_VM()
         {
-            //TestOpenFile();
+            DownloadReminders(Collections.Reminders);
             SaveRemindersCmd = new LamdaCommand(OnSaveRemindersCmdExecuted, CanSaveRemindersCmdExecute);
         }
 
         #endregion
 
-        //private void TestOpenFile()
-        //{
-        //    string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\");
-        //    string[] nameFile = Directory.GetFiles(path);
-        //    foreach (string paths in nameFile)
-        //    {
-        //        Process.Start(paths);
-        //    }
-        //}
-
         public void SaveReminders(ObservableCollection<Reminder> collections)
         {
             string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\");
-            string json = JsonSerializer.Serialize(collections);
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+            string json = JsonSerializer.Serialize(collections, options);
             File.WriteAllText(path + @"reminders.json", json);
+        }
+
+        public void DownloadReminders(ObservableCollection<Reminder> collection)
+        {
+            string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\");
+            string jsonString = File.ReadAllText(path + @"reminders.json");
+
+            //Reminder reminder = JsonSerializer.Deserialize<Reminder>(jsonString);
+            
         }
     }
 }
