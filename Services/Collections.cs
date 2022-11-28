@@ -13,8 +13,6 @@ namespace Memory_Refresher.Services
         public static List<Reminder> ListReminders { get; set; } = new List<Reminder>();
 
         // Коллекция для хранения и отображения напоминаний
-        public static ObservableCollection<Reminder> Reminders { get; set; } = new ObservableCollection<Reminder>();
-
-        
+        public static ObservableCollection<Reminder> Reminders { get; /*set;*/ } = new ObservableCollection<Reminder>();
     }
 }

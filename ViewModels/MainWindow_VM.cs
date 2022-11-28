@@ -9,6 +9,7 @@ using System.Text.Json.Serialization;
 using Memory_Refresher.Services;
 using Memory_Refresher.Resources.Iterfaces;
 using System.Collections.ObjectModel;
+using System;
 
 namespace Memory_Refresher.ViewModels
 {
@@ -67,7 +68,10 @@ namespace Memory_Refresher.ViewModels
 
         public void SaveReminders(ObservableCollection<Reminder> collections)
         {
-            string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\");
+            //string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\");
+            var exePath = AppDomain.CurrentDomain.BaseDirectory;
+            var path = Path.Combine(exePath + @"\..\..\Data\Reminders\");
+
             var options = new JsonSerializerOptions
             {
                 WriteIndented = true
@@ -78,11 +82,19 @@ namespace Memory_Refresher.ViewModels
 
         public void DownloadReminders(ObservableCollection<Reminder> collection)
         {
-            string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\");
+            string exePath = AppDomain.CurrentDomain.BaseDirectory;
+            string path = Path.Combine(exePath + @"\..\..\Data\Reminders\");
+
             string jsonString = File.ReadAllText(path + @"reminders.json");
 
-            //Reminder reminder = JsonSerializer.Deserialize<Reminder>(jsonString);
-            
+            var remiders = JsonSerializer.Deserialize<ObservableCollection<Reminder>>(jsonString);
+
+            foreach(Reminder reminder in remiders)
+            {
+                Reminder rem1 = new Reminder();
+                rem1 = reminder;
+                collection.Add(rem1);
+            }
         }
     }
 }
