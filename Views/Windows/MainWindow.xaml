@@ -91,12 +91,13 @@
                                 Command="{Binding SaveRemindersCmd}">
                         </Button>
 
-                        <Button Content="Отменить напоминание"
+                        <Button Content="Удалить напоминание"
                                 Width="200"
                                 Margin="5"
                                 Height="30" 
                                 HorizontalAlignment="Left"
-                                Style="{StaticResource RemoveButtonStyle}">
+                                Style="{StaticResource RemoveButtonStyle}"
+                                Command="{Binding ReminderDeleteCmd}">
                         </Button>
                         <StackPanel.Background>
                             <LinearGradientBrush >

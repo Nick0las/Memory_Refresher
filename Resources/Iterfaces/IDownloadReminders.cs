@@ -5,7 +5,9 @@ namespace Memory_Refresher.Resources.Iterfaces
 {
     internal interface IDownloadReminders
     {
-        void SaveReminders(ObservableCollection <Reminder> collection);
-        void DownloadReminders(ObservableCollection<Reminder> collection);
+        void ISaveReminders(ObservableCollection <Reminder> collection);
+        void IDownloadReminders(ObservableCollection<Reminder> collection);
+        void IReminderCompleted( Reminder SelectReminder , ObservableCollection<Reminder> collection);
+        void IReminderDelete(Reminder SelectReminder, ObservableCollection<Reminder> collection);
     }
 }

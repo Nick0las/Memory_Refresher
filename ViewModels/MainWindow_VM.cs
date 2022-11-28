@@ -40,7 +40,7 @@ namespace Memory_Refresher.ViewModels
         private bool CanSaveRemindersCmdExecute(object p) => true;
         private void OnSaveRemindersCmdExecuted(object p)
         {
-            SaveReminders(Collections.Reminders);
+            ISaveReminders(Collections.Reminders);
         }
         #endregion //Сохранение в файл
 
@@ -49,25 +49,36 @@ namespace Memory_Refresher.ViewModels
         private bool CanReminderCompletedCmdExecute(object p) => true;
         private void OnReminderCompletedCmdExecuted(object p)
         {
-            SelectedReminder.statusReminder = true;
+            IReminderCompleted(SelectedReminder, Collections.Reminders);
         }
 
         #endregion //Команда на статус "Напомнинание выполнено"
 
+        #region Удаление напоминания
+        public ICommand ReminderDeleteCmd { get; }
+        private bool CanReminderDeleteCmdExecute(object p) => true;
+        private void OnReminderDeleteCmdExecuted(object p)
+        {
+            IReminderDelete(SelectedReminder, Collections.Reminders);
+            ISaveReminders(Collections.Reminders);
+        }
+
+        #endregion
 
         #endregion //команды
 
         #region Конструктор
         public MainWindow_VM()
         {
-            DownloadReminders(Collections.Reminders);            
+            IDownloadReminders(Collections.Reminders);
+            ReminderDeleteCmd = new LamdaCommand(OnReminderDeleteCmdExecuted, CanReminderDeleteCmdExecute);
             SaveRemindersCmd = new LamdaCommand(OnSaveRemindersCmdExecuted, CanSaveRemindersCmdExecute);
             ReminderCompletedCmd = new LamdaCommand(OnReminderCompletedCmdExecuted, CanReminderCompletedCmdExecute);
         }
 
         #endregion
 
-        public void SaveReminders(ObservableCollection<Reminder> collections)
+        public void ISaveReminders(ObservableCollection<Reminder> collections)
         {
             var exePath = AppDomain.CurrentDomain.BaseDirectory;
             var path = Path.Combine(exePath + @"\..\..\Data\Reminders\");
@@ -80,7 +91,7 @@ namespace Memory_Refresher.ViewModels
             File.WriteAllText(path + @"reminders.json", json);
         }
 
-        public void DownloadReminders(ObservableCollection<Reminder> collection)
+        public void IDownloadReminders(ObservableCollection<Reminder> collection)
         {
             string exePath = AppDomain.CurrentDomain.BaseDirectory;
             string path = Path.Combine(exePath + @"\..\..\Data\Reminders\");
@@ -107,6 +118,18 @@ namespace Memory_Refresher.ViewModels
             {
                 return;
             }
+        }
+
+        public void IReminderCompleted(Reminder SelectReminder, ObservableCollection<Reminder> collection)
+        {
+            SelectedReminder.statusReminder = true;
+            collection.Remove(SelectReminder);
+        }
+
+        public void IReminderDelete(Reminder SelectReminder, ObservableCollection<Reminder> collection)
+        {
+            collection.Remove(SelectReminder);
+            ISaveReminders(collection);
         }
     }
 }
