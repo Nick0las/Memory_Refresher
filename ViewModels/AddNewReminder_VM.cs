@@ -4,6 +4,7 @@ using Memory_Refresher.Services;
 using Memory_Refresher.ViewModels.ViewModel_Base;
 using System;
 using System.Windows.Input;
+using System.Linq;
 
 namespace Memory_Refresher.ViewModels
 {
@@ -76,13 +77,19 @@ namespace Memory_Refresher.ViewModels
             reminder.MessageReminder = ContentNewReminder;
             reminder.statusReminder = false;
             reminder.DateTimeReminder = DateTimeNewReminder;
-            
-            Collections.Reminders.Add(reminder);
 
-
+            Collections.ListReminders = Collections.Reminders.ToList();
+            Collections.ListReminders.Add(reminder);
+            var sortcollections = Collections.ListReminders.OrderBy(r => r.DateTimeReminder).ToList();
+            Collections.Reminders.Clear();
+            foreach(var remind in sortcollections)
+            {
+                Collections.Reminders.Add(remind);
+            }
         }
 
         #endregion
+
         #region Конструктор
         // Конструктор без парам
 

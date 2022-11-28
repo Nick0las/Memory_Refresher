@@ -51,15 +51,15 @@ namespace Memory_Refresher.ViewModels
 
         #endregion
 
-        private void TestOpenFile()
-        {
-            string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\");
-            string[] nameFile = Directory.GetFiles(path);
-            foreach (string paths in nameFile)
-            {
-                Process.Start(paths);
-            }
-        }
+        //private void TestOpenFile()
+        //{
+        //    string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\");
+        //    string[] nameFile = Directory.GetFiles(path);
+        //    foreach (string paths in nameFile)
+        //    {
+        //        Process.Start(paths);
+        //    }
+        //}
 
         public void SaveReminders(ObservableCollection<Reminder> collections)
         {
