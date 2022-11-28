@@ -47,7 +47,6 @@
                 <MenuItem Header="Сохранить все напоминания"
                           Style="{StaticResource MenuItemStyle}"
                           Command="{Binding SaveRemindersCmd}"/>
-
                 <MenuItem Header="Выход"
                           Style="{StaticResource MenuItemStyle}"/>
             </MenuItem>
@@ -140,6 +139,8 @@
                             <ContextMenu>
                                 <MenuItem Header="Выполнено"
                                           Command="{Binding ReminderCompletedCmd}"/>
+                                <MenuItem Header="Удалить напоминание"
+                                          Command="{Binding ReminderDeleteCmd}"/>
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                     </DataGrid>
