@@ -68,7 +68,6 @@ namespace Memory_Refresher.ViewModels
 
         public void SaveReminders(ObservableCollection<Reminder> collections)
         {
-            //string path = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\Data\Reminders\");
             var exePath = AppDomain.CurrentDomain.BaseDirectory;
             var path = Path.Combine(exePath + @"\..\..\Data\Reminders\");
 
