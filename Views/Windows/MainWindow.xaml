@@ -12,6 +12,9 @@
     <Window.DataContext>
         <vm:MainWindow_VM/>
     </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding SaveRemindersCmd}" Key="S" Modifiers="Ctrl"/>
+    </Window.InputBindings>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
             <TextBlock FontSize="45"
@@ -43,7 +46,11 @@
               Style="{StaticResource MenuCustomStyle}">
             <MenuItem Header="Файл">
                 <MenuItem Header="Новое напоминание"
-                          Style="{StaticResource MenuItemStyle}"/>
+                          Style="{StaticResource MenuItemStyle}">
+                    <MenuItem.Command>
+                        <cmd:AddNewReminderCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
                 <MenuItem Header="Сохранить все напоминания"
                           Style="{StaticResource MenuItemStyle}"
                           Command="{Binding SaveRemindersCmd}"/>
