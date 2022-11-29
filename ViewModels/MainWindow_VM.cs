@@ -54,16 +54,27 @@ namespace Memory_Refresher.ViewModels
 
         #endregion //Команда на статус "Напомнинание выполнено"
 
-        #region Удаление напоминания
+        #region Удаление напоминания из файла
         public ICommand ReminderDeleteCmd { get; }
         private bool CanReminderDeleteCmdExecute(object p) => true;
         private void OnReminderDeleteCmdExecuted(object p)
         {
             IReminderDelete(SelectedReminder, Collections.Reminders);
-            ISaveReminders(Collections.Reminders);
         }
 
         #endregion
+
+        #region Команда закрытия приложения
+        public ICommand CloseApp { get; }
+        private bool CanCloseAppExecute(object p) => true;
+        private void OnCloseAppExecuted(object p)
+        {
+            ISaveReminders(Collections.Reminders);
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        #endregion
+
 
         #endregion //команды
 
@@ -71,6 +82,7 @@ namespace Memory_Refresher.ViewModels
         public MainWindow_VM()
         {
             IDownloadReminders(Collections.Reminders);
+            CloseApp = new LamdaCommand(OnCloseAppExecuted, CanCloseAppExecute);
             ReminderDeleteCmd = new LamdaCommand(OnReminderDeleteCmdExecuted, CanReminderDeleteCmdExecute);
             SaveRemindersCmd = new LamdaCommand(OnSaveRemindersCmdExecuted, CanSaveRemindersCmdExecute);
             ReminderCompletedCmd = new LamdaCommand(OnReminderCompletedCmdExecuted, CanReminderCompletedCmdExecute);
@@ -129,7 +141,7 @@ namespace Memory_Refresher.ViewModels
         public void IReminderDelete(Reminder SelectReminder, ObservableCollection<Reminder> collection)
         {
             collection.Remove(SelectReminder);
-            ISaveReminders(collection);
+            //ISaveReminders(collection);
         }
     }
 }

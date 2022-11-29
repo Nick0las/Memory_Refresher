@@ -47,8 +47,9 @@
                 <MenuItem Header="Сохранить все напоминания"
                           Style="{StaticResource MenuItemStyle}"
                           Command="{Binding SaveRemindersCmd}"/>
-                <MenuItem Header="Выход"
-                          Style="{StaticResource MenuItemStyle}"/>
+                <MenuItem Header="Сохранить и выйти"
+                          Style="{StaticResource MenuItemStyle}"
+                          Command="{Binding CloseApp}"/>
             </MenuItem>
             <MenuItem Header="Помощь"
                       Style="{StaticResource MenuItemStyle}"/>
@@ -81,7 +82,7 @@
                             </Button.Command>
                         </Button>
                         
-                        <Button Content="Сохранить напоминания"
+                        <Button Content="Сохранить"
                                 Width="200"
                                 Margin="5"
                                 Height="30" 
