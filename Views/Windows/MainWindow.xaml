@@ -51,9 +51,10 @@
                         <cmd:AddNewReminderCommand/>
                     </MenuItem.Command>
                 </MenuItem>
-                <MenuItem Header="Сохранить все напоминания"
+                <MenuItem Header="Сохранить все напоминания   Ctrl+S"
                           Style="{StaticResource MenuItemStyle}"
                           Command="{Binding SaveRemindersCmd}"/>
+
                 <MenuItem Header="Сохранить и выйти"
                           Style="{StaticResource MenuItemStyle}"
                           Command="{Binding CloseApp}"/>
