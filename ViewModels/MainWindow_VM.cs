@@ -64,7 +64,7 @@ namespace Memory_Refresher.ViewModels
 
         #endregion
 
-        #region Команда закрытия приложения
+        #region Команда сохранения и закрытия приложения
         public ICommand CloseApp { get; }
         private bool CanCloseAppExecute(object p) => true;
         private void OnCloseAppExecuted(object p)
@@ -72,6 +72,19 @@ namespace Memory_Refresher.ViewModels
             ISaveReminders(Collections.Reminders);
             System.Windows.Application.Current.Shutdown();
         }
+
+        #endregion
+
+        #region Команда открытия окна по таймеру
+        public ICommand ActivatingAlarmClockCmd { get; }
+        private bool CanActivatingAlarmClockCmdExecute(object p) => true;
+        private void OnnActivatingAlarmClockCmdExecuted (object p)
+        {
+
+        }
+
+
+
 
         #endregion
 
