@@ -1,19 +1,5 @@
 [
   {
-    "IndexReminder": 20,
-    "TittleReminder": "\u0422\u0435\u0441\u0442_3",
-    "MessageReminder": "\u0422\u0435\u0441\u0442_3",
-    "DateTimeReminder": "2022-12-01T14:06:31.615+07:00",
-    "statusReminder": false
-  },
-  {
-    "IndexReminder": 2,
-    "TittleReminder": "\u0422\u0435\u0441\u04421",
-    "MessageReminder": "\u0422\u0435\u0441\u04421..\r\n",
-    "DateTimeReminder": "2022-12-03T14:03:10.114+07:00",
-    "statusReminder": false
-  },
-  {
     "IndexReminder": 3,
     "TittleReminder": "\u0422\u0435\u0441\u04421",
     "MessageReminder": "\u0422\u0435\u0441\u04421..\r\n",
@@ -28,21 +14,7 @@
     "statusReminder": false
   },
   {
-    "IndexReminder": 5,
-    "TittleReminder": "\u0422\u0435\u0441\u04421",
-    "MessageReminder": "\u0422\u0435\u0441\u04421..\r\n",
-    "DateTimeReminder": "2022-12-03T14:03:10.114+07:00",
-    "statusReminder": false
-  },
-  {
     "IndexReminder": 6,
-    "TittleReminder": "\u0422\u0435\u0441\u04421",
-    "MessageReminder": "\u0422\u0435\u0441\u04421..\r\n",
-    "DateTimeReminder": "2022-12-03T14:03:10.114+07:00",
-    "statusReminder": false
-  },
-  {
-    "IndexReminder": 7,
     "TittleReminder": "\u0422\u0435\u0441\u04421",
     "MessageReminder": "\u0422\u0435\u0441\u04421..\r\n",
     "DateTimeReminder": "2022-12-03T14:03:10.114+07:00",
@@ -84,20 +56,6 @@
     "statusReminder": false
   },
   {
-    "IndexReminder": 14,
-    "TittleReminder": "\u0422\u0435\u0441\u04422",
-    "MessageReminder": "\u0422\u0435\u0441\u04422",
-    "DateTimeReminder": "2022-12-03T14:03:38.459+07:00",
-    "statusReminder": false
-  },
-  {
-    "IndexReminder": 15,
-    "TittleReminder": "\u0422\u0435\u0441\u04422",
-    "MessageReminder": "\u0422\u0435\u0441\u04422",
-    "DateTimeReminder": "2022-12-03T14:03:38.459+07:00",
-    "statusReminder": false
-  },
-  {
     "IndexReminder": 16,
     "TittleReminder": "\u0422\u0435\u0441\u04422",
     "MessageReminder": "\u0422\u0435\u0441\u04422",
@@ -116,20 +74,6 @@
     "TittleReminder": "\u0422\u0435\u0441\u04422",
     "MessageReminder": "\u0422\u0435\u0441\u04422",
     "DateTimeReminder": "2022-12-03T14:03:38.459+07:00",
-    "statusReminder": false
-  },
-  {
-    "IndexReminder": 21,
-    "TittleReminder": "\u041D\u043E\u0432\u044B\u0439 \u0442\u0435\u0441\u0442",
-    "MessageReminder": "\u041D\u043E\u0432\u044B\u0439 \u0442\u0435\u0441\u0442",
-    "DateTimeReminder": "2022-12-03T15:19:40.833+07:00",
-    "statusReminder": false
-  },
-  {
-    "IndexReminder": 22,
-    "TittleReminder": "\u041F\u043E\u0437\u0432\u043E\u043D\u0438\u0442\u044C",
-    "MessageReminder": "\u041D\u043E\u0432\u044B\u0439 \u0437\u0432\u043E\u043D\u043E\u043A",
-    "DateTimeReminder": "2022-12-04T15:19:40.833+07:00",
     "statusReminder": false
   }
 ]

@@ -14,7 +14,6 @@
     </Window.DataContext>
     <Window.InputBindings>
         <KeyBinding Command="{Binding SaveRemindersCmd}" Key="S" Modifiers="Ctrl"/>
-        <KeyBinding Command="{Binding ReminderDeleteCmd}" Key="Delete"/>
     </Window.InputBindings>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
@@ -125,6 +124,9 @@
                               Background="LightGray"
                               ItemsSource ="{Binding Source={x:Static serv:Collections.Reminders}}"
                               SelectedItem="{Binding SelectedReminder}">
+                        <DataGrid.InputBindings>
+                            <KeyBinding Key="Delete" Command="{Binding ReminderDeleteCmd}"/>
+                        </DataGrid.InputBindings>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Index"
                                                 Width="75"
