@@ -103,6 +103,9 @@ namespace Memory_Refresher.ViewModels
 
         #endregion
 
+        #region Реализация интерфейса IDownloadReminders
+
+        //сохранение в файл
         public void ISaveReminders(ObservableCollection<Reminder> collections)
         {
             var exePath = AppDomain.CurrentDomain.BaseDirectory;
@@ -115,7 +118,7 @@ namespace Memory_Refresher.ViewModels
             string json = JsonSerializer.Serialize(collections, options);
             File.WriteAllText(path + @"reminders.json", json);
         }
-
+        //загрузка из файла
         public void IDownloadReminders(ObservableCollection<Reminder> collection)
         {
             string exePath = AppDomain.CurrentDomain.BaseDirectory;
@@ -145,11 +148,15 @@ namespace Memory_Refresher.ViewModels
             }
         }
 
+        //присваивание напоминанию статуса выполнено и исключение из коллекции
+
         public void IReminderCompleted(Reminder SelectReminder, ObservableCollection<Reminder> collection)
         {
             SelectedReminder.statusReminder = true;
             collection.Remove(SelectReminder);
         }
+
+        //удаление напоминания
 
         public void IReminderDelete(Reminder SelectReminder, ObservableCollection<Reminder> collection)
         {
@@ -158,3 +165,4 @@ namespace Memory_Refresher.ViewModels
         }
     }
 }
+#endregion
