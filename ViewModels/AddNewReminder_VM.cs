@@ -5,6 +5,9 @@ using Memory_Refresher.ViewModels.ViewModel_Base;
 using System;
 using System.Windows.Input;
 using System.Linq;
+using System.Collections.ObjectModel;
+using System.Windows;
+using Memory_Refresher.Views.Windows;
 
 namespace Memory_Refresher.ViewModels
 {
@@ -72,10 +75,16 @@ namespace Memory_Refresher.ViewModels
         {
             //Создание нового напоминания
             Reminder reminder = new Reminder();
-            reminder.IndexReminder = Collections.Reminders.Count + 1;
+            reminder.IndexReminder = SerchMaxIndexInCollections(Collections.Reminders);                
             reminder.TittleReminder = TittleNewReminder;
             reminder.MessageReminder = ContentNewReminder;
             reminder.statusReminder = false;
+
+            if(DateTimeNewReminder <= DateTime.Now)
+            {
+                MessageBoxResult result = MessageBox.Show("Невозможно создать напоминание раньше текущего времени", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
             reminder.DateTimeReminder = DateTimeNewReminder;
 
             Collections.ListReminders = Collections.Reminders.ToList();
@@ -85,6 +94,18 @@ namespace Memory_Refresher.ViewModels
             foreach(var remind in sortcollections)
             {
                 Collections.Reminders.Add(remind);
+            }
+            MessageBoxResult resultQuestion = MessageBox.Show("Напоминание добавлено. Добавить еще одно?", "Готово!", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if(resultQuestion == MessageBoxResult.No)
+            {
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window is AddNewReminder)
+                    {
+                        window.Close();
+                        break;
+                    }
+                }
             }
         }
 
@@ -102,5 +123,21 @@ namespace Memory_Refresher.ViewModels
         }
 
         #endregion
+
+        //метод поиска  максимального значения Reminder.Index в коллекции
+        private int SerchMaxIndexInCollections(ObservableCollection<Reminder> collectionReminders)
+        {
+            int maxIndex = 1;
+            if (collectionReminders.Count != 0)
+            {
+                maxIndex = collectionReminders[0].IndexReminder;
+                foreach(Reminder reminder in collectionReminders)
+                {
+                    maxIndex = maxIndex >= reminder.IndexReminder ? maxIndex : reminder.IndexReminder;
+                }
+                return maxIndex + 1;
+            }
+            return maxIndex;
+        }
     }
 }

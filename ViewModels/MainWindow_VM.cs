@@ -95,11 +95,34 @@ namespace Memory_Refresher.ViewModels
         public MainWindow_VM()
         {
             IDownloadReminders(Collections.Reminders);
+            NextReminderTime(Collections.Reminders);
             CloseApp = new LamdaCommand(OnCloseAppExecuted, CanCloseAppExecute);
             ReminderDeleteCmd = new LamdaCommand(OnReminderDeleteCmdExecuted, CanReminderDeleteCmdExecute);
             SaveRemindersCmd = new LamdaCommand(OnSaveRemindersCmdExecuted, CanSaveRemindersCmdExecute);
             ReminderCompletedCmd = new LamdaCommand(OnReminderCompletedCmdExecuted, CanReminderCompletedCmdExecute);
         }
+
+        #endregion
+
+        #region методы
+        //метод возвращает интервал времени в минутах для ближайшего напоминания (используется для таймера)
+        private double NextReminderTime(ObservableCollection<Reminder> Reminders)
+        {
+            double x = 0;
+
+            if (Reminders.Count != 0)
+            {
+                Reminder rem = Reminders[0];
+                TimeSpan interval = (DateTime.Now - rem.DateTimeReminder).Duration();
+
+                x = interval.TotalMinutes;
+            }
+            
+
+            
+            return x;
+        }
+
 
         #endregion
 
